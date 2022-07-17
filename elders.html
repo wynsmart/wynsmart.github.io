@@ -1,0 +1,320 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="洛基家族官方主页，THE LOKIs' OFFICIAL">
+  <meta name="keywords" content="COC, Clash of Clans, 部落冲突, The Lokis, 洛基家族,">
+  <meta name="author" content="iSMart_cn">
+  <title>洛基家族 - 部落长老</title>
+  <link rel="Shortcut Icon" href="favicon.ico">
+  <link rel="apple-touch-icon-precomposed" href="apple-touch-icon-precomposed.png">
+  <link rel="stylesheet" href="style.css">
+  <style type="text/css">
+    label{
+      margin: 0;
+      padding: 0;
+    }
+    input[type="number"]{
+      margin: 0;
+      padding: 0;
+      margin-left: 20px;
+      outline: none;
+      font-size: 20px;
+      width: 125px;
+      background: none;
+      border: 1px solid #b3ab9a;
+      text-align: center;
+    }
+    input[type=submit]{
+      color: #FFF;
+      font-size: 18px;
+      font-style: italic;
+      width: 100%;
+      height: 35px;
+      margin: 0;
+      padding: 0;
+      display: block;
+      background-color: #bc2436;
+      border-width: 1px;
+      -webkit-appearance: none;
+    }
+    input[type=submit]:hover{
+      color: #FBB;
+    }
+    input[type=submit]:active{
+      color: #bc2436;
+      background-color: #D66;
+    }
+    select{
+      height:30px;
+      width:100px;
+      padding: 0;
+      margin:0;
+    }
+    .part1{
+      min-height: 300px;
+    }
+    #evaluator{
+      background: url("images/golem.png") no-repeat right bottom;
+      padding-right: 420px;
+      min-height: 260px;
+    }
+    .indices{
+      background: #DCB;
+      text-align: center;
+      vertical-align: middle;
+      display: inline-block;
+      width: 150px;
+      line-height: 25px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .part2{
+      border-top: 1px solid #b3ab9a;
+      margin-top: 50px;
+    }
+    .privileges{
+      border: 2px solid #92897A;
+    }
+    .privileges td{
+      border: 1px solid #92897A;
+      padding: 2px 5px;
+    }
+    .privileges th{
+      border: 1px solid #92897A;
+      padding: 2px 5px;
+      background-color:#B4AB9C;
+      font-weight:bold;
+    }
+    .privileges tr:hover {
+      background-color: #FDB;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div class="container">
+  <nav>
+    <ul>
+      <li><a href="index.html" class="home">首页</a></li>
+      <li><a href="about.html" class="about">关于我们</a></li>
+      <li><a href="elders.html" class="elders">部落长老</a></li>
+      <li><a href="glories.html" class="glories">荣誉殿堂</a></li>
+    </ul>
+  </nav>
+</div>
+<div class="container">
+  <nav>
+    <ul>
+      <li><a href="index.html" class="home">首页</a></li>
+      <li><a href="about.html" class="about">关于我们</a></li>
+      <li><a href="elders.html" class="elders">部落长老</a></li>
+      <li><a href="glories.html" class="glories">荣誉殿堂</a></li>
+    </ul>
+  </nav>
+</div>
+</header>
+<div class="main">
+<div class="container">
+  <div class="contents">
+    <article class="title">
+      <section>部落长老</section>
+      <section class="subtitle">PROMOTION</section>
+    </article>
+    <article id="brief" class="part1">
+      <section>
+        <h3>提升机制</h3>
+        <p>
+          洛基家族首创「L.D.R.W.评估系统」，用于 Elder 选举等部落人员考核。
+          "L" 意为 Level, "D" 意为 Donate, "R" 意为 Receive, "W" 意为 Won。
+          即选取对部落成员评估最关键的四个因子－等级、捐兵数、收兵数、胜场数，代入复杂的计算体系，最终得出一个全方位客观反映一个成员表现的指数。
+        </p>
+      </section>
+      <section id="evaluator">
+        <h3>成员评估</h3>
+        <div class="bubble">
+        <form name="evaluator_form" id="evaluator_form" onsubmit="renderElderIndex(); return false;">
+          <table width="100%">
+            <tr>
+              <td width="240">
+                <label for="level">等级数:</label><input id="level" name="level" class="params" type="number" min="0" placeholder="0"><br>
+                <label for="wins">胜场数:</label><input id="wins" name="wins" class="params" type="number" min="0" placeholder="0"><br>
+                <label for="donate">捐兵数:</label><input id="donate" name="donate" class="params" type="number" min="0" placeholder="0"><br>
+                <label for="receive">收兵数:</label><input id="receive" name="receive" class="params" type="number" min="0" placeholder="0"><br>
+                <label style="margin-right:15px;">联盟分级:</label>
+                <select name="clan" id="clan">
+                  <option value="master" selected>大师级[M]</option>
+                  <option value="elite">精英级[E]</option>
+                  <option value="develop">发展级[D]</option>
+                </select>
+              </td>
+              <td>
+                <label>等级指数:</label><br>
+                <label>战争指数:</label><br>
+                <label>捐兵指数:</label><br>
+                <label>收兵指数:</label><br>
+                <label>综合指数:</label>
+              </td>
+              <td width="150">
+                <span class="indices" id="indLevel">0</span><br>
+                <span class="indices" id="indWins">0</span><br>
+                <span class="indices" id="indDonate">0</span><br>
+                <span class="indices" id="indReceive">0</span><br>
+                <span class="indices" id="indFinal">0</span>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="3">
+                <input type="submit" style="margin-top:10px;" value="开始评估">
+              </td>
+            </tr>
+          </table>
+        </form>
+        </div>
+      </section>
+    </article>
+    <article class="part2">
+      <section>
+        <h2 style="text-align:center">关于L.D.R.W.评估系统</h2>
+        <h3>评估指南</h3>
+        <p>部落成员可随时在本页面上方“<a href="#evaluator">成员评估</a>”处输入自己的等级，本赛季进攻胜场数及捐收数（防守胜场数不计），选取自己所在部落，点击"开始评估"，计算自己的综合指数。一旦成员的综合指数到达5.0，就可将自己的赛季信息截屏发到QQ群里，经 Leader 团队验证通过后，成员即可被任命为 Elder。
+          <br><span class="tips">Tips: 切换Clan会清空捐收数，所以在冲击Elder期间，不建议流动捐收兵</span></p>
+        <p style="text-align: center;">
+          <img id="profile_sample" src="images/profile_sample.png" alt="profile page">
+          <label for="profile_sample" class="img_title">赛季信息样图</label>
+        </p>
+        <h3>任期制度</h3>
+        <p>Elder 的任命采取「随达随任，任期三月」的制度。即部落中的每位玩家只要在评估体系中达到任命为 Elder 的标准，立即可以被任命为 Elder，任期为三个月。从被任命之日开始的三个月之后根据任期内的表现代入评估体系决定是否可以续任。</p>
+        <h3>自动连任</h3>
+        <p>每个任期开始之际，Leader 团队会截屏记录 Elder 各项成就数值，与任期结束时的数值比较，若满足活跃度条件（此项指标待定），则自动连任，省去了反复冲击Elder的艰难历程。
+          <br><span class="tips">Tips: Elder任期活跃度采用成就榜数据，所以不会因为切换Clan而清空，各位Elders可以放心流动捐收兵，回到原Clan会自动提升回Elder</span></p>
+        <p>部落成员可随时来到此页面计算自己的指数，同时洛基家族也欢迎其他部落的广大 CoC 玩家朋友前来计算试用我们的评估系统。</p>
+        <h3>副首领任命</h3>
+        <p>洛基家族各部落的副首领任命采取团队讨论任命的方式，洛基家族 Leader团队会不定期根据团队成员的提名讨论新任副首领人选。新任副首领经过团队讨论通过，并通过试用期后，会被邀请加入洛基家族 Leader团队，参与洛基家族各项事宜讨论决策。</p>
+        <h3>管理权限</h3>
+        <table width="100%" class="privileges">
+          <tr>
+            <th width="20%">&nbsp;</th>
+            <th width="20%">部落首领</th>
+            <th width="20%">副首领</th>
+            <th width="25%">部落长老</th>
+            <th width="15%">普通成员</th>
+          </tr>
+          <tr>
+            <td>晋升</td>
+            <td>所有成员</td>
+            <td>副首领或部落长老</td>
+            <td>无</td>
+            <td>无</td>
+          </tr>
+          <tr>
+            <td>降职</td>
+            <td>所有职位</td>
+            <td>部落长老</td>
+            <td>无</td>
+            <td>无</td>
+          </tr>
+          <tr>
+            <td>踢出部落</td>
+            <td>所有成员</td>
+            <td>部落长老</td>
+            <td>普通成员（有冷却时间）</td>
+            <td>无</td>
+          </tr>
+          <tr>
+            <td>接受请求</td>
+            <td>可以</td>
+            <td>可以</td>
+            <td>可以</td>
+            <td>无</td>
+          </tr>
+          <tr>
+            <td>邀请</td>
+            <td>可以</td>
+            <td>可以</td>
+            <td>可以</td>
+            <td>无</td>
+          </tr>
+          <tr>
+            <td>发送邮件</td>
+            <td>可以</td>
+            <td>可以</td>
+            <td>无</td>
+            <td>无</td>
+          </tr>
+          <tr>
+            <td>修改部落信息</td>
+            <td>可以</td>
+            <td>可以</td>
+            <td>无</td>
+            <td>无</td>
+          </tr>
+        </table>
+      </section>
+    </article>
+  </div>
+</div>
+</div>
+<footer>
+  <div class="container">
+  <div class="footer_contents">
+    <table width="100%">
+      <tr>
+        <td width="300" style="color:#432;">
+          <span style="font-weight:bold; font-size:20px;">洛基家族 - THE LOKIs</span><br>
+          <div style="font-size:18px;margin-top: 10px;">QQ群: 292588829</div>
+        </td>
+        <td style="text-align: right; line-height: 1.5em;">
+          <div style="color: #625d53;">
+             洛基家族 ©2014 保留所有权利<br>
+            Copyright ©2014 THE LOKIs. All Rights Reserved<br>
+            <span style="font-style:italic">by iSMart_cn, J.YaShine, ak_jindl_CN</span>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</footer>
+<script src="evaluator.js"></script>
+<script>
+function get_form_data(form_id){
+  var data = {};
+  var form = document.getElementById(form_id);
+  var fields = form.elements;
+  for (i = 0; i < fields.length; i++){
+    var obj = fields[i];
+    if (obj.name.length == 0) continue;
+    if (obj.type == 'text' || obj.type == 'number' ||
+        obj.type == 'hidden' || (obj.type == 'radio' && obj.checked)) {
+       data[obj.name] = obj.value;
+    }
+    else if (obj.type == 'select-one') {
+      data[obj.name] = obj.options[obj.selectedIndex].value;
+    }
+  }
+  return data;
+}
+
+function renderElderIndex(){
+  data = get_form_data('evaluator_form');
+  var indices = calcElderIndex(data);
+  for (indName in indices){
+    indValue = indices[indName];
+    indElement = document.getElementById(indName);
+    indElement.innerHTML = indValue;
+    COLOR_MAP = {
+      0: "#DDCCBB",
+      1: "#12B0F6",
+      2: "#3DFFD4",
+      3: "#00FF07",
+      4: "#FFBA00",
+      default: "#FF415B",
+    };
+    color = Math.floor(indValue);
+    indElement.style.backgroundColor = (color > 4) ? COLOR_MAP.default : COLOR_MAP[color];
+  }
+}
+</script>
+</body>
+</html>

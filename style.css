@@ -1,0 +1,167 @@
+body {
+  min-width: 1000px;
+  margin: 0;
+  padding: 0;
+  background: #b3ab9a;
+  font-family: arial, sans-serif !important;
+  -webkit-text-size-adjust:none;
+}
+
+table {
+  border-collapse: collapse;
+  border: none;
+}
+
+th {
+  text-align: center;
+}
+
+tr,td {
+  border: none;
+  margin: 0;
+  padding: 0;
+  vertical-align: top;
+}
+
+a{
+  color: #bc2436;
+  text-decoration: underline;
+}
+a:hover{
+  background: #FAA;
+}
+
+header {
+  min-width: 1000px;
+  height: 110px;
+  border-top: 2px solid #7a121e;
+  border-bottom: 10px solid #7a121e;
+  background: #bc2436;
+}
+
+.main {
+  background: #f1e7d2;
+  min-height: 1000px;
+  min-width: 1000px;
+}
+
+.container {
+  width: 1000px;
+  margin: 0 auto;
+}
+
+.contents{
+  font-size: 20px;
+  line-height: 35px;
+  padding-top: 50px;
+  padding-bottom: 100px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+footer {
+  font-size: 16px;
+  min-width: 1000px;
+  border-top: 10px solid #918978;
+}
+
+.footer_contents{
+  padding: 30px 20px;
+
+}
+
+nav ul {
+  width: 999px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-left: 1px solid #7a121e;
+}
+
+nav li{
+  display: table-cell;
+  margin: 0;
+  padding: 0;
+  border-right: 1px solid #7a121e;
+}
+
+nav li:hover{
+  background: #db303d;
+}
+
+nav a {
+  display: block;
+  margin: 0;
+  padding: 0;
+  width: 135px;
+  height: 110px;
+  text-indent: -9999px;
+}
+
+nav a.home{
+  background: url("images/logo.png") no-repeat 20px center;
+  background-size: 360px 75px;
+  width: 590px;
+}
+
+nav a.about{
+  background: url("images/nav.png") no-repeat 0 center;
+  background-size: 405px 50px;
+}
+
+nav a.elders{
+  background: url("images/nav.png") no-repeat -135px center;
+  background-size: 405px 50px;
+}
+
+nav a.glories{
+  background: url("images/nav.png") no-repeat -270px center;
+  background-size: 405px 50px;
+}
+
+.title {
+  text-align: center;
+  display: block;
+  height: 90px;
+  font-size: 45px;
+  font-weight: bold;
+  margin: 5px auto;
+  background: url("images/banner.png") no-repeat center bottom;
+  margin-bottom: 30px;
+}
+
+.subtitle{
+  color: #FFF;
+  font-size: 20px;
+  margin-top: 18px;
+}
+
+h2{
+  font-size: 40px;
+  color: #bc2436;
+  font-weight: bold;
+  font-style: italic;
+}
+h3{
+  font-size: 25px;
+  color: #bc2436;
+}
+
+.bubble{
+    border: 2px solid #b3ab9a;
+    background: rgba(255,255,255,0.3);
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-style: italic;
+  }
+
+.img_title{
+  display: block;
+  font-size: 16px;
+  line-height: 1em;
+}
+
+.tips{
+  font-style: italic;
+  color: #bc2436;
+}

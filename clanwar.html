@@ -1,0 +1,199 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="洛基家族官方主页，THE LOKIs' OFFICIAL">
+  <meta name="keywords" content="CoC, Clash of Clans, 部落冲突, The Lokis, 洛基家族,">
+  <meta name="author" content="iSMart_cn">
+  <title>洛基家族官方主页 - 部落对战</title>
+  <link rel="Shortcut Icon" href="favicon.ico">
+  <link rel="apple-touch-icon-precomposed" href="apple-touch-icon-precomposed.png">
+  <link rel="stylesheet" href="style.css">
+  <script src="jquery-3.1.0.min.js"></script>
+  <style>
+  .part1{
+    background: url("images/valkyrie.png") no-repeat right bottom;
+    padding-right: 300px;
+    min-height: 450px;
+  }
+  .part2{
+    border-top: 1px solid #b3ab9a;
+    margin-top: 50px;
+  }
+  .enemy_stat{
+    border: 2px solid #92897A;
+  }
+  .enemy_stat td{
+    border: 1px solid #92897A;
+    padding: 2px 5px;
+    font-size: 16px;
+  }
+  .enemy_stat th{
+    border: 1px solid #92897A;
+    padding: 2px 5px;
+    background-color:#B4AB9C;
+    font-weight:bold;
+  }
+  .enemy_stat td:first-child,
+  .enemy_stat td:last-child {
+    text-align: center;
+    vertical-align: middle;
+  }
+  .enemy_stat tr:hover {
+    background-color: #FDB;
+  }
+  .part3{
+    padding-top: 20px;
+    text-align: center;
+  }
+  </style>
+</head>
+<body>
+  <header></header>
+  <div class="main">
+    <div class="container">
+      <div class="contents">
+        <article class="title">
+          <section>部落对战</section>
+          <section class="subtitle">CLAN WAR</section>
+        </article>
+        <?php
+        if ($codePassed) {
+        ?>
+        <!-- passed -->
+        <article class="part1">
+          <section>
+            <h3>核心战略部署</h3>
+            <p>洛基部落战按照以下三轮进行，每轮进攻目标请参考下表，未列出战术的对手非该轮进攻目标。进攻结果满足期望的都可以接受。</p>
+            <p>第一波进攻以三星敌人为进攻目标。要求进攻者仔细计划，沉着严谨，选择三星把握最高的目标。其中，对手最后五名必须一次取下三星。此轮进攻预计拿下30颗星。</p>
+            <p>第二波进攻为我们进攻的主要部分，以全部敌方作为进攻目标。部落成员选取自己的进攻流派所适合的对手，争取拿下尽可能多的星星。此轮暂时不予补星。</p>
+            <p>第三波进攻以补星和清边为目标，在大比分领先的情况下，需遵循部落邮件公告进行偷本。此轮结束要求全体成员完成两次进攻。</p>
+            <p></p>
+          </section>
+        </article>
+        <article class="part2">
+          <section>
+          <h2 style="text-transform:capitalize; text-align:center;"><?php echo $clanname.'作战指南'; ?></h2>
+          </section>
+          <section>
+          <table width="100%" class="enemy_stat">
+            <tr>
+              <th>编号</th>
+              <th width="28%">第一波 - 序曲</th>
+              <th width="28%">第二波 - 正篇</th>
+              <th width="28%">第三波 - 尾声</th>
+              <th width="8%">期望</th>
+            </tr>
+            <?php
+            // read in techniques
+            $filename = './clanwar/techniques.csv';
+            $file = fopen($filename, "r");
+            if ($file) {
+              $techniques = array();
+              while ($line = fgetcsv($file)) {
+                array_push($techniques, $line);
+              }
+              fclose($file);
+            }
+            // write out stats
+            $expectations = array(0, 0, 0, 0);
+            // $filename = './clanwar/clanwar_'.$clanname.'.csv';
+            $stor = new SaeStorage();
+            $filename = $stor->getUrl('clanwar','clanwar_'.$clanname.'.csv');
+            $file = fopen($filename, "r");
+            if ($file) {
+              $stats = array();
+              while ($line = fgetcsv($file)) {
+                array_push($stats, $line);
+              }
+              fclose($file);
+              for ($i = 1; $i < count($stats); $i++) {
+                // begin row
+                echo '<tr>';
+                // id
+                echo '<td>';
+                echo $stats[$i][0];
+                echo '</td>';
+                // details
+                for ($j = 1; $j <= 3; $j++) {
+                  echo '<td>';
+                  $indexes = preg_split("/[, ;]/", $stats[$i][$j]);
+                  foreach ($indexes as $index) {
+                    if ($techniques[$index][1]) {
+                      echo '<a href="techniques.php?id='.$index.'" target="_blank">';
+                      echo $techniques[$index][1];
+                      echo '</a><br>';
+                    }
+                  }
+                  echo '</td>';
+                }
+                // write out seperate expectation
+                $item_exp = (int)$stats[$i][4];
+                echo '<td>';
+                echo $item_exp.'星';
+                echo '</td>';
+                // end row
+                echo '</tr>';
+                // count expectations
+                if ($item_exp >=1 && $item_exp <= 3){
+                  $expectations[$item_exp] += 1;
+                  $expectations[0] += $item_exp;
+                }
+              }
+            }
+            // write out expectation
+            echo '<tr>';
+            echo '<td colspan="5"style="vertical-align:center; height:100px;">';
+            echo '总期望: <span style="font-weight:bold; font-size:30px;">'.$expectations[0].'</span> 星';
+            echo '<div style="line-height:20px">';
+            echo '( 三星: '.$expectations[3].' | 二星: '.$expectations[2].' | 一星: '.$expectations[1].' )';
+            echo '</div>';
+            echo '</td>';
+            echo '</tr>';
+            ?>
+          </table>
+          <div style="text-align:right; font-size:12px;">*本指南仅供参考，请根据实际情况进行调整。</div>
+          </section>
+        </article>
+        <?php
+        }
+        else {
+        ?>
+        <!-- not passed -->
+        <article class="part3">
+          <section class="bubble">
+            <img src="images/badge.png">
+            <h2>请提供有效的邀请码</h2>
+            您将在<span id="count_down">3</span>秒后自动返回
+            <div style="color:#666; font-size:14px;">
+              如果没有自动跳转，请点击<a href="about.html#clanwar">这里</a>手动跳转
+            </div>
+          </section>
+          <script>
+          var timerNode = document.getElementById("count_down");
+          var count_down = timerNode.innerHTML;
+          window.onload = function (){
+            var timer = window.setInterval(function (){
+            count_down--;
+            timerNode.innerHTML = count_down;
+            if (count_down == 0) {
+              window.clearInterval(timer);
+              window.location = "about.html#clanwar";
+            }
+            }, 1000);
+          }
+          </script>
+        </article>
+        <?php
+        }
+        ?>
+      </div>
+    </div>
+  </div>
+  <footer></footer>
+  <script>
+    $('header').load('_header.html');
+    $('footer').load('_footer.html');
+  </script>
+</body>
+</html>
